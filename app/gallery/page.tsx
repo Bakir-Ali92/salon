@@ -6,14 +6,15 @@ import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { getcategories, getgalleryitems, type GalleryItem } from "@/lib/gallery"
 import { useLanguage } from "@/contexts/LanguageContext"
-import { Play, Image as ImageIcon, X, Pause, Volume2, VolumeX } from "lucide-react"
+import { Image as ImageIcon, X, Play } from "lucide-react" 
+// Removed unused icons (Pause, Volume2, VolumeX) since we are using native controls
 
 export default function GalleryPage() {
   const { language } = useLanguage()
   const [selectedCategory, setSelectedCategory] = useState("all")
   const [selectedMedia, setSelectedMedia] = useState<GalleryItem | null>(null)
-  const [isPlaying, setIsPlaying] = useState(false)
-  const [isMuted, setIsMuted] = useState(false)
+  
+  // We don't need isPlaying or isMuted state anymore because the native player handles it
   const videoRef = useRef<HTMLVideoElement>(null)
 
   const galleryItems = getgalleryitems()
@@ -28,29 +29,10 @@ export default function GalleryPage() {
   const imagesCount = galleryItems.filter(item => item.mediaType === 'image').length
   const videosCount = galleryItems.filter(item => item.mediaType === 'video').length
 
-  // Handle video controls
-  const togglePlayPause = () => {
-    if (videoRef.current) {
-      if (isPlaying) {
-        videoRef.current.pause()
-      } else {
-        videoRef.current.play()
-      }
-      setIsPlaying(!isPlaying)
-    }
-  }
-
-  const toggleMute = () => {
-    if (videoRef.current) {
-      videoRef.current.muted = !isMuted
-      setIsMuted(!isMuted)
-    }
-  }
-
   const closeModal = () => {
+    // Pause video when closing modal
     if (videoRef.current) {
       videoRef.current.pause()
-      setIsPlaying(false)
     }
     setSelectedMedia(null)
   }
@@ -144,7 +126,7 @@ export default function GalleryPage() {
                     </>
                   ) : (
                     <>
-                      {/* Video Thumbnail - NO TITLE OVERLAY */}
+                      {/* Video Thumbnail */}
                       <div className="relative w-full h-full">
                         <Image
                           src={item.thumbnail || item.mediaUrl || "/placeholder.svg"}
@@ -173,7 +155,7 @@ export default function GalleryPage() {
           </div>
         </section>
 
-        {/* Video Modal - Keep title in modal */}
+        {/* Video Modal - UPDATED FOR NATIVE CONTROLS */}
         {selectedMedia && selectedMedia.mediaType === 'video' && (
           <div className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4">
             <div className="relative w-full max-w-4xl">
@@ -184,40 +166,23 @@ export default function GalleryPage() {
                 <X className="w-6 h-6" />
               </button>
               
-              <div className="relative bg-black rounded-lg overflow-hidden">
+              <div className="relative bg-black rounded-lg overflow-hidden shadow-2xl ring-1 ring-white/10">
                 <video
                   ref={videoRef}
                   src={selectedMedia.mediaUrl}
-                  className="w-full h-auto max-h-[70vh]"
-                  controls={false}
+                  className="w-full h-auto max-h-[80vh]"
+                  controls={true} // Enabled native controls (Scrub bar, Fullscreen, Volume)
                   autoPlay
-                  onPlay={() => setIsPlaying(true)}
-                  onPause={() => setIsPlaying(false)}
-                  onEnded={() => setIsPlaying(false)}
+                  playsInline
+                  controlsList="nodownload"
                 />
-                
-                {/* Custom Video Controls */}
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 to-transparent p-4">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-4">
-                      <button
-                        onClick={togglePlayPause}
-                        className="text-white hover:text-amber-400"
-                      >
-                        {isPlaying ? <Pause className="w-6 h-6" /> : <Play className="w-6 h-6" />}
-                      </button>
-                      <button
-                        onClick={toggleMute}
-                        className="text-white hover:text-amber-400"
-                      >
-                        {isMuted ? <VolumeX className="w-6 h-6" /> : <Volume2 className="w-6 h-6" />}
-                      </button>
-                      <span className="text-white text-sm">
-                        {selectedMedia.duration}
-                      </span>
-                    </div>
-                  </div>
-                </div>
+              </div>
+              
+              {/* Optional: Title below video */}
+              <div className="mt-4 text-white text-center">
+                <h3 className="text-xl font-medium">
+                  {language === "en" ? selectedMedia.titleEn : selectedMedia.titleAr}
+                </h3>
               </div>
             </div>
           </div>

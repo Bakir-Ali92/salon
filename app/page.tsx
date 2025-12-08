@@ -6,7 +6,6 @@ import Hero from "@/components/hero"
 import Services from "@/components/services"
 import Offers from "@/components/offers"
 import Products from "@/components/products"
-import Testimonials from "@/components/testimonials"
 import Footer from "@/components/footer"
 import { useLanguage } from "@/contexts/LanguageContext" // Import context
 
@@ -61,9 +60,7 @@ export default function Home() {
         <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-amber-500 to-transparent"></div>
         <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-amber-500 to-transparent"></div>
       </div>
-      
-      <Testimonials language={language} /> {/* Pass language prop */}
-      
+        
       <Footer language={language} /> {/* Pass language prop */}
     </main>
   )

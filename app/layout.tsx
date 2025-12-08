@@ -1,8 +1,10 @@
+// app/layout.tsx (or wherever your RootLayout is located)
 import type React from "react"
 import type { Metadata } from "next"
 import { Playfair_Display, Poppins } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { LanguageProvider } from "@/contexts/LanguageContext"
+import ClientLayout from "@/components/ClientLayout" // 👈 Import the new wrapper
 import "./globals.css"
 
 const playfair = Playfair_Display({ subsets: ["latin"], weight: ["400", "600", "700"] })
@@ -51,12 +53,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        {/* You can add additional meta tags for RTL support */}
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
       <body className={`${poppins.className} antialiased bg-background text-foreground`}>
         <LanguageProvider>
-          {children}
+          {/* 👇 The ClientLayout wraps children to handle ChatBubble and RTL logic */}
+          <ClientLayout>
+            {children}
+          </ClientLayout>
         </LanguageProvider>
         <Analytics />
       </body>

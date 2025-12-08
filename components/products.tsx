@@ -134,7 +134,7 @@ export default function Products({ language = "en", onAddToCart }: ProductsProps
                   <Link
                     href={`/products/${product.slug || product.id}`}
                     className="text-accent hover:text-accent/80 text-sm font-medium border border-accent rounded-lg px-4 py-2 hover:bg-accent/10 transition">
-                    {content.viewDetails} →
+                    {content.viewDetails}
                   </Link>
                 </div>
                 </div>
