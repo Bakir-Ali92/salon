@@ -38,6 +38,8 @@ const getProductBySlug = (slug: string): Product | undefined => {
     return productDetails.find(p => p.slug === slug);
 };
 
+export const runtime = 'edge';
+
 export default function ProductDetailPage() {
     const { language } = useLanguage();
     
