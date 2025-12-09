@@ -11,23 +11,47 @@ const playfair = Playfair_Display({ subsets: ["latin"], weight: ["400", "600", "
 const poppins = Poppins({ subsets: ["latin"], weight: ["400", "500", "600"] })
 
 export const metadata: Metadata = {
-  title: "Angel Glow Beauty Salon | Luxury Beauty & Skincare",
-  description: "Discover luxury beauty services and premium skincare products at Angel Glow Beauty Salon. Experience elegance and radiance.",
-  keywords: ["beauty salon", "skincare", "hair salon", "beauty treatments", "Oman salon", "مسقط صالون تجميل"],
+  // ✅ 1. Put "Salalah" in the title (Crucial for clicks)
+  title: "Angel Glow Beauty Salon | Best Beauty Salon in Salalah, Oman",
+  
+  // ✅ 2. Mention location and nearby landmarks in description
+  description: "Experience luxury beauty, hair, and skincare services at Angel Glow in Salalah. Located near [Your Landmark, e.g., Al Saada/Dahariz]. Book your appointment today.",
+  
+  // ✅ 3. Target Salalah keywords (English & Arabic)
+  keywords: [
+    "angel glow",
+    "beauty salon Salalah",   // Specific location
+    "Salalah hair salon",
+    "best spa in Salalah",
+    "Dhofar beauty salon",    // The region name
+    "bridal makeup Salalah",
+    "skincare Oman",
+    "صالون تجميل صلالة",      // "Beauty Salon Salalah" (Arabic)
+    "أفضل صالون في صلالة",    // "Best salon in Salalah" (Arabic)
+    "مكياج صلالة",           // "Makeup Salalah" (Arabic)
+    "علاجات شعر صلالة"        // "Hair treatments Salalah" (Arabic)
+  ],
+  
   authors: [{ name: "Angel Glow Beauty Salon" }],
+  
   openGraph: {
     type: "website",
     locale: "en_US",
+    // ✅ 4. Add alternate locale for Arabic if you have it
+    alternateLocale: ["ar_OM"], 
     url: "https://angelglow.com",
-    title: "Angel Glow Beauty Salon",
-    description: "Luxury Beauty & Skincare Services in Oman",
+    title: "Angel Glow - Luxury Salon in Salalah",
+    description: "Premium hair and beauty services in the heart of Salalah, Oman.",
     siteName: "Angel Glow Beauty Salon",
   },
+  
   twitter: {
     card: "summary_large_image",
-    title: "Angel Glow Beauty Salon",
-    description: "Luxury Beauty & Skincare Services in Oman",
+    title: "Angel Glow Beauty Salon - Salalah",
+    description: "Luxury Beauty & Skincare Services in Dhofar, Oman",
   },
+  
+  // ... rest of your robots/icons settings remain the same
   robots: {
     index: true,
     follow: true,
