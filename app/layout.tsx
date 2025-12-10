@@ -110,13 +110,12 @@ export default function RootLayout({
     "priceRange": "1-50 R.O"
   };
   // 👆 END OF SECTION 1
-
-  return (
+return (
     <html lang="en">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         
-        {/* 👇 SECTION 2: PASTE THIS SCRIPT TAG HERE (Inside <head>) */}
+        {/* 👇 SECTION 2: JSON-LD SCRIPT */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -124,7 +123,8 @@ export default function RootLayout({
         {/* 👆 END OF SECTION 2 */}
         
       </head>
-      <body className={`${poppins.className} antialiased bg-background text-foreground`}>
+      {/* 👇 FIXED LINE BELOW: Added 'notranslate' */}
+      <body className={`${poppins.className} antialiased bg-background text-foreground notranslate`}>
         <LanguageProvider>
           <ClientLayout>
             {children}
