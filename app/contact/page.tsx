@@ -110,14 +110,17 @@ export default function ContactPage() {
             </a>
             {/* Hours */}
             <div className="bg-card border border-accent/20 rounded-xl p-8 text-center hover:border-accent/50 transition">
-              <Clock className="w-10 h-10 text-accent mx-auto mb-4" />
-              <h3 className="font-semibold text-foreground mb-2">{language === "en" ? "Hours" : "الساعات"}</h3>
-              <p className="text-muted-foreground text-sm">
-                {language === "en"
-                  ? "Mon - Fri: 10AM - 8PM\nSat - Sun: 11AM - 6PM"
-                  : "الإثنين - الجمعة: 10 صباحاً - 8 مساءاً\nالسبت - الأحد: 11 صباحاً - 6 مساءاً"}
-              </p>
-            </div>
+  <Clock className="w-10 h-10 text-accent mx-auto mb-4" />
+  <h3 className="font-semibold text-foreground mb-2">
+    {language === "en" ? "Hours" : "الساعات"}
+  </h3>
+  <p className="text-muted-foreground text-sm">
+    {language === "en"
+      ? "Sat - thurs: 11AM - 11PM\nFri: 4PM - 10PM"
+      : `السبت - الخميس: 11 صباحاً - 11 مساءاً
+الجمعة: 4 مساءاً - 10 مساءاً`}
+  </p>
+</div>
           </div>
         </section>
 

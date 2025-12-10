@@ -15,10 +15,14 @@ export const metadata: Metadata = {
   title: "Angel Glow Beauty Salon | Best Beauty Salon in Salalah, Oman",
   
   // ✅ 2. Mention location and nearby landmarks in description
-  description: "Experience luxury beauty, hair, and skincare services at Angel Glow in Salalah. Located near [Your Landmark, e.g., Al Saada/Dahariz]. Book your appointment today.",
+  description: "Offering professional luxury services in beauty, hair, and specialized skincare, Angel Glow is your premier destination in Salalah, Oman. Schedule your appointment to discover our expert care.",
   
   // ✅ 3. Target Salalah keywords (English & Arabic)
   keywords: [
+    "beauty salon in salalah",
+    "beauty salon in oman",
+    "angel glow beauty salon",
+    "angel glow salon",
     "angel glow",
     "beauty salon Salalah",   // Specific location
     "Salalah hair salon",
@@ -64,24 +68,64 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: "/icon.svg",
-    apple: "/apple-icon.png",
+    icon: "/logo.jpg",
+    apple: "/logo.jpg",
   },
 }
+
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
+
+  // 👇 SECTION 1: PASTE THIS DATA HERE (Before the 'return' statement)
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BeautySalon",
+    "name": "Angel Glow Beauty Salon",
+    "url": "https://angelglow.online",
+    "telephone": "+968 0000 0000",  // 👈 Replace with real number
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Salalah",
+      "addressRegion": "Dhofar",
+      "postalCode": "211",
+      "addressCountry": "OM"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 17.0150,  // 👈 Replace with real coordinates from Google Maps
+      "longitude": 54.0900
+    },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday","Friday", "Saturday"],
+        "opens": "11:00 AM",
+        "closes": "23:00 PM"
+      }
+    ],
+    "priceRange": "1-50 R.O"
+  };
+  // 👆 END OF SECTION 1
+
   return (
     <html lang="en">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        
+        {/* 👇 SECTION 2: PASTE THIS SCRIPT TAG HERE (Inside <head>) */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        {/* 👆 END OF SECTION 2 */}
+        
       </head>
       <body className={`${poppins.className} antialiased bg-background text-foreground`}>
         <LanguageProvider>
-          {/* 👇 The ClientLayout wraps children to handle ChatBubble and RTL logic */}
           <ClientLayout>
             {children}
           </ClientLayout>

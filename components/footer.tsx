@@ -93,16 +93,14 @@ export default function Footer({ language = "en" }: FooterProps) {
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>
                 {/* Replace '#' with your actual Instagram URL */}
-                <Link href="#" className="hover:text-accent transition">
+                <a href="https://www.instagram.com/angel_glow_saloon?igsh=MWV3Z2N4aGZjenB1dQ=="
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-accent transition">
                   {translations.instagram}
-                </Link>
+                </a>
               </li>
-              <li>
-                 {/* Replace '#' with your actual Facebook URL */}
-                <Link href="#" className="hover:text-accent transition">
-                  {translations.facebook}
-                </Link>
-              </li>
+             
             </ul>
           </div>
 
