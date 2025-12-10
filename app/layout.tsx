@@ -69,6 +69,7 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: "/logo.jpg",
+    shortcut: "/logo.jpg",
     apple: "/logo.jpg",
   },
 }
@@ -86,7 +87,7 @@ export default function RootLayout({
     "@type": "BeautySalon",
     "name": "Angel Glow Beauty Salon",
     "url": "https://angelglow.online",
-    "telephone": "+968 0000 0000",  // 👈 Replace with real number
+    "telephone": "+968 9127 4704",  // 👈 Replace with real number
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "Salalah",
@@ -96,8 +97,8 @@ export default function RootLayout({
     },
     "geo": {
       "@type": "GeoCoordinates",
-      "latitude": 17.0150,  // 👈 Replace with real coordinates from Google Maps
-      "longitude": 54.0900
+      "latitude": 17.071600749367942,  // 👈 Replace with real coordinates from Google Maps
+      "longitude":  54.18928984084738
     },
     "openingHoursSpecification": [
       {
